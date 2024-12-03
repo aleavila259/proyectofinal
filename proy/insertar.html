@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insertar Datos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .form-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        button:hover {
+            background: #4cae4c;
+        }
+        .success {
+            color: green;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .error {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Insertar Datos</h1>
+        <!-- Formulario HTML -->
+        <form method="POST" action="">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            
+            <label for="correo">Correo:</label>
+            <input type="email" id="correo" name="correo" required>
+            
+            <button type="submit">Guardar</button>
+        </form>
+
+        <?php
+        // Código PHP para procesar la inserción
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Datos del formulario
+            $nombre = $_POST['nombre'];
+            $correo = $_POST['correo'];
+
+            // Configuración de la conexión a la base de datos
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "educativa"; // Cambia por el nombre de tu base de datos
+
+            // Crear la conexión
+            $conn = new mysqli($servername, $username, $password, $dbname);
+
+            // Verificar la conexión
+            if ($conn->connect_error) {
+                die("<div class='error'>Error de conexión: " . $conn->connect_error . "</div>");
+            }
+
+            // Insertar los datos
+            $sql = "INSERT INTO usuarios (nombre, correo) VALUES ('$nombre', '$correo')";
+            if ($conn->query($sql) === TRUE) {
+                echo "<div class='success'>Datos guardados correctamente.</div>";
+            } else {
+                echo "<div class='error'>Error: " . $sql . "<br>" . $conn->error . "</div>";
+            }
+
+            // Cerrar la conexión
+            $conn->close();
+        }
+        ?>
+    </div>
+
+    <a href="proy.html">Volver al inicio</a>
+</body>
+</html>

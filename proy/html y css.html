@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML y CSS</title>
+   <style>
+    /* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo general */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f9;
+    color: #333;
+    padding: 20px;
+}
+
+/* Encabezado */
+header {
+    background-color: #4a148c; /* Morado oscuro */
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+}
+
+/* Contenido principal */
+main {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+main h3, main h4 {
+    color: #4a148c;
+    margin-bottom: 10px;
+}
+
+main p {
+    margin-bottom: 15px;
+}
+
+main ul {
+    margin: 10px 0 20px 20px;
+    padding-left: 10px;
+    list-style: square;
+}
+
+main ul ul {
+    list-style: circle;
+    margin-top: 5px;
+}
+
+main li {
+    margin-bottom: 10px;
+}
+
+code {
+    background-color: #e0e0e0;
+    color: #4a148c;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+pre {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+footer a {
+    color: #4a148c;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: #6a1b9a;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    main {
+        padding: 15px;
+    }
+}
+
+   </style>
+</head>
+<body>
+    <header>
+        <h1>HTML y CSS</h1>
+    </header>
+    <main>
+        <h3>¿Qué es HTML?</h3>
+        <p>
+            HTML (HyperText Markup Language) es el lenguaje de marcado estándar para la creación de páginas web. Se utiliza para estructurar el contenido de un sitio web a través de etiquetas que definen elementos como textos, imágenes, enlaces y más.
+        </p>
+        
+        <h4>Elementos básicos de HTML:</h4>
+        <ul>
+            <li><strong>Estructura básica:</strong> Cada documento HTML comienza con la etiqueta <code>&lt;html&gt;</code> y contiene un <code>&lt;head&gt;</code> y un <code>&lt;body&gt;</code>.</li>
+            <li><strong>Encabezados:</strong> Etiquetas <code>&lt;h1&gt;</code> a <code>&lt;h6&gt;</code> para títulos.</li>
+            <li><strong>Párrafos:</strong> Se utilizan las etiquetas <code>&lt;p&gt;</code> para añadir texto.</li>
+            <li><strong>Imágenes:</strong> La etiqueta <code>&lt;img&gt;</code> se usa para incluir imágenes.</li>
+            <li><strong>Enlaces:</strong> Los enlaces se crean con la etiqueta <code>&lt;a&gt;</code>.</li>
+            <li><strong>Listas:</strong>
+                <ul>
+                    <li>Listas ordenadas: <code>&lt;ol&gt;</code>.</li>
+                    <li>Listas desordenadas: <code>&lt;ul&gt;</code>.</li>
+                </ul>
+            </li>
+        </ul>
+        
+        <h3>¿Qué es CSS?</h3>
+        <p>
+            CSS (Cascading Style Sheets) es el lenguaje de diseño utilizado para controlar la apariencia de los elementos en una página web. Permite agregar colores, fuentes, espacios, tamaños y animaciones.
+        </p>
+        
+        <h4>Elementos básicos de CSS:</h4>
+        <ul>
+            <li><strong>Selección de elementos:</strong>
+                <ul>
+                    <li><code>Elementos:</code> Selección directa por etiquetas, como <code>p</code>.</li>
+                    <li><code>Clases:</code> Selección usando un punto, como <code>.clase</code>.</li>
+                    <li><code>ID:</code> Selección con un numeral, como <code>#id</code>.</li>
+                </ul>
+            </li>
+            <li><strong>Propiedades comunes:</strong>
+                <ul>
+                    <li><code>color:</code> Cambia el color del texto.</li>
+                    <li><code>background-color:</code> Establece el color de fondo.</li>
+                    <li><code>font-size:</code> Ajusta el tamaño de la fuente.</li>
+                    <li><code>margin</code> y <code>padding:</code> Controlan el espaciado interno y externo de los elementos.</li>
+                </ul>
+            </li>
+            <li><strong>Animaciones:</strong> Con <code>@keyframes</code> se pueden crear efectos visuales dinámicos.</li>
+        </ul>
+    </main>
+    <footer>
+        <a href="proy.html">Volver al inicio</a>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bases de Datos Relacionales</title>
+    <style>
+        /* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f5f5f5;
+    color: #333;
+    padding: 20px;
+}
+
+/* Encabezado */
+header {
+    background-color: #5b3c88; /* Morado */
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+}
+
+/* Contenido principal */
+main {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+main h3 {
+    color: #5b3c88;
+    margin-bottom: 10px;
+}
+
+main p {
+    margin-bottom: 15px;
+}
+
+main ul, main ol {
+    margin: 10px 0 20px 20px;
+    padding-left: 10px;
+    list-style: square;
+}
+
+main li {
+    margin-bottom: 10px;
+}
+
+pre {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Formularios */
+form {
+    margin-top: 20px;
+    background-color: #e9e9f8;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: bold;
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+form button {
+    background-color: #5b3c88;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #482c6b;
+}
+
+/* Enlaces */
+footer a {
+    display: block;
+    text-align: center;
+    color: #5b3c88;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bases de Datos Relacionales</h1>
+    </header>
+    <main>
+        <h3>Tipos de Bases de Datos</h3>
+        <p>Existen diferentes tipos de bases de datos según su estructura y propósito. Algunos de los más comunes son:</p>
+        <ul>
+            <li><strong>Bases de datos relacionales:</strong> Organizan los datos en tablas relacionadas, como MySQL, PostgreSQL y SQLite.</li>
+            <li><strong>Bases de datos no relacionales:</strong> También conocidas como NoSQL, almacenan datos en formatos como documentos, grafos o claves-valor. Ejemplos: MongoDB, Cassandra.</li>
+            <li><strong>Bases de datos en memoria:</strong> Diseñadas para operaciones rápidas almacenando los datos en la memoria RAM. Ejemplo: Redis.</li>
+            <li><strong>Bases de datos en la nube:</strong> Servicios que ofrecen almacenamiento y gestión de datos en plataformas en la nube. Ejemplo: Firebase, Amazon RDS.</li>
+        </ul>
+        
+        <h3>Ventajas de Usar Bases de Datos</h3>
+        <ul>
+            <li>Organización eficiente de grandes volúmenes de información.</li>
+            <li>Facilidad para realizar consultas y obtener datos específicos.</li>
+            <li>Seguridad en el almacenamiento de datos sensibles.</li>
+            <li>Posibilidad de realizar copias de seguridad y restauraciones.</li>
+            <li>Compatibilidad con múltiples lenguajes de programación.</li>
+        </ul>
+        
+        <h3>SQL: Lenguaje para Bases de Datos Relacionales</h3>
+        <p>SQL (Structured Query Language) es el lenguaje estándar para interactuar con bases de datos relacionales. Permite realizar operaciones como:</p>
+        <ul>
+            <li><strong>SELECT:</strong> Recuperar datos.</li>
+            <li><strong>INSERT:</strong> Agregar nuevos registros.</li>
+            <li><strong>UPDATE:</strong> Modificar datos existentes.</li>
+            <li><strong>DELETE:</strong> Eliminar registros.</li>
+        </ul>
+        <pre><code>
+        -- Ejemplo básico de consulta SQL
+        SELECT nombre, correo FROM usuarios WHERE edad > 18;
+        </code></pre>
+        
+        <h3>Configuración de Base de Datos en MySQL</h3>
+        <p>Para configurar una base de datos en MySQL, sigue estos pasos:</p>
+        <ol>
+            <li>Accede a <strong>phpMyAdmin</strong> o usa el cliente MySQL desde la terminal.</li>
+            <li>Crea una base de datos:
+                <pre><code>CREATE DATABASE educativa;</code></pre>
+            </li>
+            <li>Crea una tabla para almacenar datos:
+                <pre><code>
+        CREATE TABLE usuarios (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            nombre VARCHAR(100) NOT NULL,
+            correo VARCHAR(100) UNIQUE NOT NULL,
+            fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+                </code></pre>
+            </li>
+        </ol>
+        
+        <h3>Insertar Datos con un Formulario en PHP</h3>
+        <p>Aquí tienes un ejemplo de código PHP para insertar datos desde un formulario:</p>
+        <form action="insertar.html" method="post">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            <br>
+            <button type="submit">Guardar</button>
+        </form>
+    </main>
+    <footer>
+        <a href="proy.html">Volver al inicio</a>
+    </footer>
+</body>
+</html>

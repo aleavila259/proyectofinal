@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego: Ahorcado</title>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #1e1e2f;
+            color: #ffffff;
+            background-image: url('juego.jpg');
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: #2e2e4f;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .progreso {
+            font-size: 2em;
+            letter-spacing: 10px;
+            margin: 20px 0;
+        }
+        .mensaje {
+            color: #f4b400;
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        .ahorcado {
+            margin: 20px 0;
+        }
+        input, button {
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            background-color: #5c67d8;
+            color: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4950b5;
+        }
+        .form-nueva-palabra {
+            margin-top: 20px;
+        }
+        .back-button {
+        padding: 10px 20px;
+        background-color: #ff7f50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.2em;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+
+    .back-button:hover {
+        background-color: #e0664d;
+    }
+    </style>
+    <script>
+        async function enviarLetra() {
+            const letra = document.getElementById("letra").value;
+            if (letra.trim() === "") return;
+
+            const response = await fetch("procesar.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ tipo: "letra", letra }),
+            });
+            const data = await response.json();
+            actualizarUI(data);
+        }
+
+        async function iniciarJuego() {
+            const nombre = document.getElementById("nombre").value;
+            if (nombre.trim() === "") return;
+
+            const response = await fetch("procesar.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ tipo: "inicio", nombre }),
+            });
+            const data = await response.json();
+            actualizarUI(data);
+        }
+
+        async function nuevaPalabra() {
+            const nuevaPalabra = document.getElementById("nueva_palabra").value;
+            if (nuevaPalabra.trim() === "") return;
+
+            const response = await fetch("procesar.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ tipo: "nueva_palabra", palabra: nuevaPalabra }),
+            });
+            const data = await response.json();
+            alert(data.mensaje);
+        }
+
+        function actualizarUI(data) {
+            if (data.mensaje) {
+                document.getElementById("mensaje").innerText = data.mensaje;
+            }
+            if (data.progreso) {
+                document.getElementById("progreso").innerText = data.progreso;
+            }
+            if (data.intentos_restantes !== undefined) {
+                document.getElementById("intentos_restantes").innerText = data.intentos_restantes;
+            }
+            if (data.finalizado) {
+                document.getElementById("form-letra").style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Juego: Ahorcado</h1>
+        <div id="inicio-juego">
+            <label for="nombre">Ingresa tu nombre:</label>
+            <input type="text" id="nombre" required>
+            <button onclick="iniciarJuego()">Iniciar Juego</button>
+        </div>
+        <div id="juego" style="display: none;">
+            <div id="ahorcado">
+                <p><strong>Intentos restantes:</strong> <span id="intentos_restantes"></span></p>
+            </div>
+            <div id="progreso" class="progreso"></div>
+            <form id="form-letra" onsubmit="enviarLetra(); return false;">
+                <label for="letra">Ingresa una letra:</label>
+                <input type="text" id="letra" maxlength="1" required>
+                <button type="submit">Enviar</button>
+            </form>
+            <p id="mensaje" class="mensaje"></p>
+        </div>
+        <form onsubmit="nuevaPalabra(); return false;">
+            <label for="nueva_palabra">Añadir nueva palabra:</label>
+            <input type="text" id="nueva_palabra" required>
+            <button type="submit">Añadir</button>
+        </form>
+    </div>
+    <script>
+        // Juego: Adivina el número
+        let secretNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 10;
+
+        function checkGuess() {
+            let guess = document.getElementById('guess').value;
+            let result = document.getElementById('result');
+            let attemptsLeft = document.getElementById('attempts');
+            
+            if (guess == secretNumber) {
+                result.textContent = '¡Felicidades! Adivinaste el número.';
+                result.style.color = 'green';
+                attemptsLeft.textContent = '';
+            } else if (guess < secretNumber) {
+                result.textContent = 'El número es mayor. Intenta de nuevo.';
+                result.style.color = 'red';
+                attempts--;
+            } else if (guess > secretNumber) {
+                result.textContent = 'El número es menor. Intenta de nuevo.';
+                result.style.color = 'red';
+                attempts--;
+            }
+            
+            if (attempts <= 0) {
+                result.textContent = '¡Te quedaste sin intentos! El número secreto era ' + secretNumber;
+                result.style.color = 'red';
+                attemptsLeft.textContent = '';
+            } else {
+                attemptsLeft.textContent = 'Intentos restantes: ' + attempts;
+            }
+        }
+    </script>
+</body>
+</html>

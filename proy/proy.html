@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Programación y Bases de Datos</title>
+   
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('fondo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        header {
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            animation: fadeIn 2s ease-in-out;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        main {
+            padding: 40px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .secciones-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            animation: slideUp 1s ease-out;
+        }
+        @keyframes slideUp {
+            0% { transform: translateY(20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        .seccion {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .seccion:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .seccion a {
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            display: block;
+            text-align: center;
+        }
+        .seccion a:hover {
+            color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Educación en Programación y Bases de Datos</h1>
+    </header>
+    <main>
+        <h2>Bienvenido</h2>
+        <p>Selecciona una sección para aprender.</p>
+        <div class="secciones-container">
+            <div class="seccion">
+                <a href="introduccion.html">Introducción a la Programación</a>
+            </div>
+            <div class="seccion">
+                <a href="basedatos.html">Bases de Datos Relacionales</a>
+            </div>
+            <div class="seccion">
+                <a href="html y css.html">HTML y CSS</a>
+            </div>
+            <div class="seccion">
+                <a href="ahorcado.html">Juego: Ahorcado</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
